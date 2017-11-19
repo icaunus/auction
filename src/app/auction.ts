@@ -53,9 +53,7 @@ export class Auction {
     return false;
   }
 
-  public findMaxBidValue():number {
-    let max:number = undefined;
-
-    return max;
+  public findMaxBidValue(numberArray:number[]):number {
+    return Math.max(...numberArray);
   }
 }
