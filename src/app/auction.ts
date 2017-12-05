@@ -53,7 +53,14 @@ export class Auction {
     return false;
   }
 
-  public findMaxBidValue(numberArray:number[]):number {
-    return Math.max(...numberArray);
+  public findMaxBidValue():number {
+    let bidValues:Array<number> = new Array<number>();
+    let i:number = 0;
+
+    for (; i < this.bids.length; i++) {
+      bidValues.push(this.bids[i].value);
+    }
+
+    return Math.max(...bidValues);
   }
 }

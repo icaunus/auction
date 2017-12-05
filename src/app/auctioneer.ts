@@ -13,15 +13,13 @@ export class Auctioneer implements Actor {
   }
 
   public acceptBid(bid:Bid):void {
-    let screen:HTMLDivElement = document.querySelector("screen");
-
-    // 
-    screen.innerText = "Bid = " + bid.value;
+    this.auction.bids.push(bid);
+    console.log("Bid = " + bid.value);
   }
 
   public evaluateBid(bidder:Bidder, item:Item, value:number):boolean {
     let isBidAccepted:boolean = false;
-    let bid:Bid = undefined;
+    let bid:Bid;
 
     isBidAccepted =  
       this.auction.isBidderAuthorized(bidder) && 
@@ -38,5 +36,9 @@ export class Auctioneer implements Actor {
     }
 
     return false;
+  }
+
+  public setFinalItemPrice(item:Item) {
+    item.finalPrice = this.auction.findMaxBidValue();
   }
 }
