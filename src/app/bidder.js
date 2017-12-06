@@ -6,7 +6,14 @@ var Bidder = /** @class */ (function () {
         this._assets = assets;
     }
     Bidder.prototype.makeBid = function (auctioneer, item, value) {
-        auctioneer.evaluateBid(this, item, value);
+        if (!this.currentItem) {
+            this.currentItem = item;
+        }
+        if (item === this.currentItem) {
+            auctioneer.evaluateBid(this, item, value);
+            return true;
+        }
+        return false;
     };
     return Bidder;
 }());
